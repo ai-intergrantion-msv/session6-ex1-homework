@@ -4,21 +4,21 @@ import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 
 public record TransferRequest(
-    @NotBlank(message = "Sender account ID must not be blank")
+    @NotBlank(message = "ID tài khoản nguồn không được để trống")
     String senderAccountId,
 
-    @NotBlank(message = "Receiver account number must not be blank")
+    @NotBlank(message = "Số tài khoản người nhận không được để trống")
     String receiverAccountNumber,
 
-    @NotBlank(message = "Bank code must not be blank")
-    @Pattern(regexp = "^(VCB|TCB|MB|ACB|VPB)$", message = "Bank code must be valid (e.g., VCB, TCB, MB, ACB, VPB)")
+    @NotBlank(message = "Mã ngân hàng không được để trống")
+    @Pattern(regexp = "^(VCB|TCB|MB|ACB|VPB)$", message = "Mã ngân hàng không hợp lệ (Ví dụ hợp lệ: VCB, TCB, MB, ACB, VPB)")
     String bankCode,
 
-    @NotNull(message = "Amount must not be null")
-    @DecimalMin(value = "10000.0", message = "Amount must be greater than or equal to 10000 VND")
+    @NotNull(message = "Số tiền không được để trống")
+    @DecimalMin(value = "10000.0", message = "Số tiền chuyển khoản phải lớn hơn hoặc bằng 10,000 VND")
     BigDecimal amount,
 
-    @Size(max = 255, message = "Description must not exceed 255 characters")
+    @Size(max = 255, message = "Nội dung chuyển khoản không được vượt quá 255 ký tự")
     String description
 ) {
 }
